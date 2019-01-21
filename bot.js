@@ -3,13 +3,13 @@ const logger = require('winston');
 const auth = require('./auth.json');
 
 const usualSuspects = {
-  1: "Andrew",
-  2: "Matt",
-  3: "MD",
-  4: "Max",
-  5: "Mark",
-  6: "Drew",
-  7: "Erik",
+  1: "*Andrew*",
+  2: "*Matt*",
+  3: "*MD*",
+  4: "*Max*",
+  5: "*Mark*",
+  6: "*Drew*",
+  7: "*Erik*",
 }
 
 logger.remove(logger.transports.Console);
@@ -34,7 +34,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.includes("!spin")) {
       bot.sendMessage({
           to: channelID,
-          message: usualSuspects[Math.floor(Math.random() * (7 - 1) + 1)]
+          message: usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)]
       });
         // var args = message.substring(1).split(' ');
         // var cmd = args[0];
