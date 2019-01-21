@@ -10,6 +10,7 @@ const usualSuspects = {
   5: "*Mark*",
   6: "*Drew*",
   7: "*Erik*",
+  8: "*Me",
 }
 
 logger.remove(logger.transports.Console);
