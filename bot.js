@@ -13,6 +13,18 @@ const usualSuspects = {
   8: "*Me*",
 }
 
+const slams = {
+  1: "Slack-jawed yokel",
+  2: "Sluggish, lazy, stupid, and unconcerned",
+  3: "Dingus",
+  4: "Dink",
+  5: "uhhh...big dummy",
+  6: "Rotisserie shithead",
+  7: "Fuckin' moron",
+  8: "McLovin-ass piece of shit",
+  9: "Fuckin' ballbag"
+}
+
 logger.remove(logger.transports.Console);
 logger.add(new logger.transports.Console, {
     colorize: true
@@ -48,4 +60,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         //     // Just add any case commands if you want to..
         //  }
      }
+  if(message.includes("!slam")) {
+    bot.sendMessage({
+        to: channelID,
+        message: slams[Math.floor(Math.random() * (10 - 1) + 1)]
+    });
+  }
 });
