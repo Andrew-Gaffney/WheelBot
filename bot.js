@@ -11,6 +11,7 @@ const usualSuspects = {
   6: "*Drew*",
   7: "*Erik*",
   8: "*Me*",
+  9: "*Kyle*",
 }
 
 const slams = {
@@ -22,7 +23,9 @@ const slams = {
   6: "Rotisserie shithead",
   7: "Fuckin' moron",
   8: "McLovin-ass piece of shit",
-  9: "Fuckin' ballbag"
+  9: "Fuckin' ballbag",
+  10: "Dumb, stupid, pathetic, weak, white....uhhh...white guilt...white guilt, milquetoast piece of human garbage.",
+  11: "Light-roasted corporate whore."
 }
 
 logger.remove(logger.transports.Console);
@@ -47,7 +50,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     if (message.includes("!spin")) {
       bot.sendMessage({
           to: channelID,
-          message: usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)]
+          message: usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]
       });
         // var args = message.substring(1).split(' ');
         // var cmd = args[0];
@@ -63,7 +66,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
   if(message.includes("!slam")) {
     bot.sendMessage({
         to: channelID,
-        message: slams[Math.floor(Math.random() * (10 - 1) + 1)]
+        message: slams[Math.floor(Math.random() * (12 - 1) + 1)]
     });
   }
 });
