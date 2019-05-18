@@ -24,12 +24,12 @@ const slams = {
   7: "Fuckin' moron",
   8: "McLovin-ass piece of shit",
   9: "Fuckin' ballbag",
-  10: "Dumb, stupid, pathetic, weak, white....uhhh...white guilt...white guilt, milquetoast piece of human garbage",
-  11: "Light-roasted corporate whore"
-  12: "Sack of a man"
-  13: "Pile of ropes on a trash heap"
-  14: "Human toilet"
-  15: "Big Galoomba"
+  10: "Dumb, stupid, pathetic, weak, white....uhhh...white guilt...white guilt, milquetoast piece of human garbage.",
+  11: "Light-roasted corporate whore",
+  12: "Sack of a man",
+  13: "Pile of ropes on a trash heap",
+  14: "Human toilet",
+  15: "Big Galoomba",
 }
 
 logger.remove(logger.transports.Console);
