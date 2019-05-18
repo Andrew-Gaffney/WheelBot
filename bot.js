@@ -25,7 +25,11 @@ const slams = {
   8: "McLovin-ass piece of shit",
   9: "Fuckin' ballbag",
   10: "Dumb, stupid, pathetic, weak, white....uhhh...white guilt...white guilt, milquetoast piece of human garbage.",
-  11: "Light-roasted corporate whore."
+  11: "Light-roasted corporate whore",
+  12: "Sack of a man",
+  13: "Pile of ropes on a trash heap",
+  14: "Human toilet",
+  15: "Big Galoomba",
 }
 
 logger.remove(logger.transports.Console);
@@ -66,7 +70,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
   if(message.includes("!slam")) {
     bot.sendMessage({
         to: channelID,
-        message: slams[Math.floor(Math.random() * (12 - 1) + 1)]
+        message: slams[Math.floor(Math.random() * (16 - 1) + 1)]
     });
   }
 });
