@@ -1,4 +1,4 @@
-const Discord = require('discord.io');
+const Discord = require('discord.js');
 const logger = require('winston');
 const auth = require('./auth.json');
 
@@ -38,59 +38,36 @@ logger.add(new logger.transports.Console, {
 });
 logger.level = 'debug';
 // Initialize Discord Bot
-var bot = new Discord.Client({
-   token: auth.token,
-   autorun: true
-});
+var bot = new Discord.Client();
+
 bot.on('ready', function (evt) {
     logger.info('Connected');
-    logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
 });
-
-bot.on('message', function (user, userID, channelID, message, evt) {
+let timedOut = [];
+bot.on('message', async message => {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    let timedOut = [];
-     while(timedOut.length !== 0) {
-      if(timedOut.contains(message.author.username)) {
-        return message.delete();
+    if(timedOut.includes(message.author.username)) {
+      await message.delete();
+    }
+    if (message.content.includes("!spin")) {
+      await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
+    }
+    if(message.content.includes("!slam")) {
+      await message.channel.send(slams[Math.floor(Math.random() * (16 - 1) + 1)]);
+    }
+    if(message.content.includes("!silence")) {
+      let silenced = message.mentions.users.first().username
+      if(message.author.username === 'Ayanowyn') {
+        timedOut.push(silenced);
+        await message.channel.send(silenced + " has been silenced.")
       }
     }
-    while(timedOut.length !== 0) {
-      if(timedOut.contains(message.author.username)) {
-        message.delete();
+    if(message.content.includes("!release")) {
+      if(message.author.username === 'Ayanowyn') {
+        timedOut = [];
+        await message.channel.send("Everyone has been released.")
       }
     }
-    if (message.includes("!spin")) {
-      bot.sendMessage({
-          to: channelID,
-          message: usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]
-      });
-  if(message.includes("!slam")) {
-    bot.sendMessage({
-        to: channelID,
-        message: slams[Math.floor(Math.random() * (16 - 1) + 1)]
-    });
-  }
-  if(message.includes("!silence")) {
-    if(message.author.tag === 'Ayanowyn#7914') {
-      let user = message.mentions.users.first();
-      timedOut.push(user);
-    }
-    bot.sendMessage({
-        to: channelID,
-        message: user + " has been silenced."
-    });
-  }
-  if(message.includes("!release")) {
-    if(message.author.tag === 'Ayanowyn#7914') {
-      let user = message.mentions.users.first();
-      timedOut = [];
-    }
-    bot.sendMessage({
-        to: channelID,
-        message: "Everyone has been released."
-    });
-  }
 });
+bot.login(auth.token);
