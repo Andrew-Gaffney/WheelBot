@@ -51,26 +51,48 @@ bot.on('ready', function (evt) {
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
+    let timedOut = [];
+    async => {
+      await while(timedOut.length !== 0) {
+        if(timedOut.contains(message.author.username)) {
+          return message.delete();
+        }
+      }
+    }
+    while(timedOut.length !== 0) {
+      if(timedOut.contains(message.author.username)) {
+        message.delete();
+      }
+    }
     if (message.includes("!spin")) {
       bot.sendMessage({
           to: channelID,
           message: usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]
       });
-        // var args = message.substring(1).split(' ');
-        // var cmd = args[0];
-        // args = args.splice(1);
-        // switch(cmd) {
-        //     // !spin
-        //     case 'spin':
-        //
-        //     break;
-        //     // Just add any case commands if you want to..
-        //  }
-     }
   if(message.includes("!slam")) {
     bot.sendMessage({
         to: channelID,
         message: slams[Math.floor(Math.random() * (16 - 1) + 1)]
+    });
+  }
+  if(message.includes("!silence")) {
+    if(message.author.tag === 'Ayanowyn#7914') {
+      let user = message.mentions.users.first();
+      timedOut.push(user);
+    }
+    bot.sendMessage({
+        to: channelID,
+        message: user + " has been silenced."
+    });
+  }
+  if(message.includes("!release")) {
+    if(message.author.tag === 'Ayanowyn#7914') {
+      let user = message.mentions.users.first();
+      timedOut = [];
+    }
+    bot.sendMessage({
+        to: channelID,
+        message: "Everyone has been released."
     });
   }
 });
