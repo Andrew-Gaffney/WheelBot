@@ -50,15 +50,17 @@ bot.on('message', async message => {
     if(timedOut.includes(message.author.username)) {
       await message.delete();
     }
-    if (message.content.includes("!spin")) {
-      await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
+    if(message.content.includes("!slam") && message.content.includes("!spin")) {
+      message.channel.send(message.author.username + ` thinks ${usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]} is a ${slams[Math.floor(Math.random() * (16 - 1) + 1)]}`);
     }
-    if(message.content.includes("!slam")) {
-      await message.channel.send(slams[Math.floor(Math.random() * (16 - 1) + 1)]);
+    else {
+      if (message.content.includes("!spin")) {
+        await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
+      }
+      if(message.content.includes("!slam")) {
+        await message.channel.send(slams[Math.floor(Math.random() * (16 - 1) + 1)]);
+      }
     }
-    // if(message.content.includes("!slam") && message.content.includes("!spin")) {
-    //   message.channel.send(message.author.username + `thinks ${usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]}`)
-    // }
     if(message.content.includes("!silence")) {
       let silenced = message.mentions.users.first().username
       if(message.author.username === 'Ayanowyn') {
