@@ -11,7 +11,6 @@ const usualSuspects = {
   6: "*Drew*",
   7: "*Erik*",
   8: "*Me*",
-  9: "*Kyle*",
 }
 
 const slams = {
@@ -30,6 +29,10 @@ const slams = {
   13: "Pile of ropes on a trash heap",
   14: "Human toilet",
   15: "Big Galoomba",
+  16: "Max",
+  17: "Matt",
+  18: "Dumb (stupid}",
+  19: "Jerk chicken",
 }
 
 logger.remove(logger.transports.Console);
