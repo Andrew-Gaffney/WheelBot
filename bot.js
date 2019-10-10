@@ -58,7 +58,7 @@ bot.on('message', async message => {
     }
     else {
       if (message.content.includes("!spin")) {
-        await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
+        await message.channel.send(usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)]);
       }
       if(message.content.includes("!slam")) {
         await message.channel.send(slams[Math.floor(Math.random() * (16 - 1) + 1)]);
