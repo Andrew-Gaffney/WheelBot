@@ -11,6 +11,7 @@ const usualSuspects = {
   6: "*Drew*",
   7: "*Erik*",
   8: "*Me*",
+  9: "*Virginia*",
 }
 
 const slams = {
@@ -29,10 +30,8 @@ const slams = {
   13: "Pile of ropes on a trash heap",
   14: "Human toilet",
   15: "Big Galoomba",
-  16: "Max",
-  17: "Matt",
-  18: "Dumb (stupid}",
-  19: "Jerk chicken",
+  16: "Dumb, stupid, idiot, bad, ugly, no friends",
+  17: "Yellow bellied varmint"
 }
 
 logger.remove(logger.transports.Console);
@@ -54,14 +53,14 @@ bot.on('message', async message => {
       await message.delete();
     }
     if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(message.author.username + ` thinks ${usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]} is a ${slams[Math.floor(Math.random() * (16 - 1) + 1)]}`);
+      message.channel.send(message.author.username + ` thinks ${usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]} is a ${slams[Math.floor(Math.random() * (18 - 1) + 1)]}`);
     }
     else {
       if (message.content.includes("!spin")) {
-        await message.channel.send(usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)]);
+        await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
       }
       if(message.content.includes("!slam")) {
-        await message.channel.send(slams[Math.floor(Math.random() * (16 - 1) + 1)]);
+        await message.channel.send(slams[Math.floor(Math.random() * (18 - 1) + 1)]);
       }
     }
     if(message.content.includes("!silence")) {
