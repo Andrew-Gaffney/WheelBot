@@ -2,6 +2,17 @@ const Discord = require('discord.js');
 const logger = require('winston');
 const auth = require('./auth.json');
 
+const userMap = new Map();
+
+userMap.set("Pyrrhus", "Matt");
+userMap.set("Ayanowyn", "Andrew");
+userMap.set("MyOnlyAlias", "MD");
+userMap.set("maxbarnyard", "Max");
+userMap.set("CombatPenguins", "Mark");
+userMap.set("Immortal Jellyfish", "Drew");
+userMap.set("snowstorm", "Erik")
+userMap.set("Girl", "Virginia")
+
 const usualSuspects = {
   1: "*Andrew*",
   2: "*Matt*",
@@ -10,7 +21,7 @@ const usualSuspects = {
   5: "*Mark*",
   6: "*Drew*",
   7: "*Erik*",
-  8: "*Me*",
+  8: "*they*",
   9: "*Virginia*",
 }
 
@@ -31,7 +42,15 @@ const slams = {
   14: "Human toilet",
   15: "Big Galoomba",
   16: "Dumb, stupid, idiot, bad, ugly, no friends",
-  17: "Yellow bellied varmint"
+  17: "Yellow bellied varmint",
+  18: "cocksocket",
+  19: "applesauce suckin' cumb bun",
+  20: "stupid little brick ass head",
+  21: "accolade chasing rat freak",
+  22: "burnt mistake",
+  23: "basic bitch",
+  24: "jerk chicken",
+  25: "dumb(stupid)"
 }
 
 logger.remove(logger.transports.Console);
@@ -53,7 +72,7 @@ bot.on('message', async message => {
       await message.delete();
     }
     if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(message.author.username + ` thinks ${usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]} is a ${slams[Math.floor(Math.random() * (18 - 1) + 1)]}`);
+      message.channel.send(userMap.get(message.author.username) + ` thinks ${usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]} is a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
     }
     else {
       if (message.content.includes("!spin")) {
