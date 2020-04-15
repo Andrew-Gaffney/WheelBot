@@ -44,7 +44,7 @@ const slams = {
   16: "Dumb, stupid, idiot, bad, ugly, no friends",
   17: "Yellow bellied varmint",
   18: "cocksocket",
-  19: "applesauce suckin' cumb bun",
+  19: "applesauce suckin' crumb bun",
   20: "stupid little brick ass head",
   21: "accolade chasing rat freak",
   22: "burnt mistake",
