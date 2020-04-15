@@ -21,8 +21,7 @@ const usualSuspects = {
   5: "Mark",
   6: "Drew",
   7: "Erik",
-  8: "Virginia",
-  9: "they",
+  8: "Virginia"
 }
 
 const slams = {
@@ -68,14 +67,13 @@ let timedOut = [];
 bot.on('message', async message => {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    let randomUser = Math.floor(Math.random() * (10 - 1) + 1);
     let randomRolledUser = usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)];
 
     if(timedOut.includes(message.author.username)) {
       await message.delete();
     }
     if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomUser === 9 || randomRolledUser === userMap.get(message.author.username) && randomRolledUser !== "Virginia" ? "he's" : randomRolledUser + " she's" } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
+      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomRolledUser === userMap.get(message.author.username) ? randomRolledUser !== "Virginia" ? "he's" : "she's" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
     }
     else {
       if (message.content.includes("!spin")) {
