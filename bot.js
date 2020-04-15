@@ -70,11 +70,12 @@ bot.on('message', async message => {
     // It will listen for messages that will start with `!`
     let randomUser = Math.floor(Math.random() * (10 - 1) + 1);
     let randomRolledUser = usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)];
+
     if(timedOut.includes(message.author.username)) {
       await message.delete();
     }
     if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomUser === 9 || randomRolledUser === userMap.get(message.author.username) ? "they are" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
+      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomUser === 9 || randomRolledUser === userMap.get(message.author.username) && randomRolledUser !== "Virginia" ? "he's" : randomRolledUser + " she's" } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
     }
     else {
       if (message.content.includes("!spin")) {
