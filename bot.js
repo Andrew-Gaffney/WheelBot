@@ -19,10 +19,10 @@ const usualSuspects = {
   3: "MD",
   4: "Max",
   5: "Mark",
-  6: "Dre*",
+  6: "Drew",
   7: "Erik",
   8: "Virginia",
-  9: "the*",
+  9: "they",
 }
 
 const slams = {
