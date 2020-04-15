@@ -73,7 +73,7 @@ bot.on('message', async message => {
       await message.delete();
     }
     if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomUser === 9 ? "they are" : usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)] + "is " } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
+      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomUser === 9 ? "they are" : usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)] + " is" } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
     }
     else {
       if (message.content.includes("!spin")) {
