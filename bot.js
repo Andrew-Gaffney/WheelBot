@@ -68,11 +68,12 @@ let timedOut = [];
 bot.on('message', async message => {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
+    let randomUser = Math.floor(Math.random() * (10 - 1) + 1);
     if(timedOut.includes(message.author.username)) {
       await message.delete();
     }
     if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(userMap.get(message.author.username) + ` thinks ${usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]} is a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
+      message.channel.send(userMap.get(message.author.username) + ` thinks ${usualSuspects[randomUser]} ${randomUser === 9 ? "they" : "is" } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
     }
     else {
       if (message.content.includes("!spin")) {
