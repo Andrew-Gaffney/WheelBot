@@ -21,7 +21,8 @@ const usualSuspects = {
   5: "Mark",
   6: "Drew",
   7: "Erik",
-  8: "Virginia"
+  8: "Virginia",
+  9: "Ethan"
 }
 
 const slams = {
@@ -49,7 +50,18 @@ const slams = {
   22: "burnt mistake",
   23: "basic bitch",
   24: "jerk chicken",
-  25: "dumb(stupid)"
+  25: "dumb(stupid)",
+  26: "piece of bitch",
+  27: "a heap of garbage dressed like a man",
+  28: "gung ho little lad",
+  29: "lip shucking dip sticker",
+  30: "dumb candy boy with a soft doughy body",
+  31: "fatty fatty no parents",
+  32: "poopoo peepee bitch boy",
+  33: "applebottomed ulcer",
+  34: "dizzy bitch",
+  35: "glumpus",
+  36: "butt dingus berry boy"
 }
 
 logger.remove(logger.transports.Console);
@@ -63,24 +75,26 @@ var bot = new Discord.Client();
 bot.on('ready', function (evt) {
     logger.info('Connected');
 });
+
 let timedOut = [];
+
 bot.on('message', async message => {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    let randomRolledUser = usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)];
+    let randomRolledUser = usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)];
 
     if(timedOut.includes(message.author.username)) {
       await message.delete();
     }
     if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomRolledUser === userMap.get(message.author.username) ? randomRolledUser !== "Virginia" ? "he's" : "she's" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (26 - 1) + 1)]}`);
+      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomRolledUser === userMap.get(message.author.username) ? randomRolledUser !== "Virginia" ? "he's" : "she's" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (37 - 1) + 1)]}`);
     }
     else {
       if (message.content.includes("!spin")) {
-        await message.channel.send(usualSuspects[Math.floor(Math.random() * (9 - 1) + 1)]);
+        await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
       }
       if(message.content.includes("!slam")) {
-        await message.channel.send(slams[Math.floor(Math.random() * (26 - 1) + 1)]);
+        await message.channel.send(slams[Math.floor(Math.random() * (37 - 1) + 1)]);
       }
     }
     if(message.content.includes("!silence")) {
