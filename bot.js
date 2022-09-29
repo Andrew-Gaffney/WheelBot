@@ -1,6 +1,6 @@
-const Discord = require('discord.js');
+const { Client, SlashCommandBuilder, GatewayIntentBits } = require('discord.js');
 const logger = require('winston');
-const auth = require('./auth.json');
+const { token } = require('./config.json');
 
 const userMap = new Map();
 
@@ -70,7 +70,10 @@ logger.add(new logger.transports.Console, {
 });
 logger.level = 'debug';
 // Initialize Discord Bot
-var bot = new Discord.Client();
+var bot = new Client({intents: [
+  GatewayIntentBits.Guilds,
+  GatewayIntentBits.MessageContent,
+]});
 
 bot.on('ready', function (evt) {
     logger.info('Connected');
@@ -78,37 +81,64 @@ bot.on('ready', function (evt) {
 
 let timedOut = [];
 
-bot.on('message', async message => {
+const commands = [
+	new SlashCommandBuilder().setName('wheel').setDescription('Hello!'),
+	new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
+	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
+]
+
+bot.on('interactionCreate', async interaction => {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    let randomRolledUser = usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)];
 
-    if(timedOut.includes(message.author.username)) {
-      await message.delete();
-    }
-    if(message.content.includes("!slam") && message.content.includes("!spin")) {
-      message.channel.send(userMap.get(message.author.username) + ` thinks ${randomRolledUser === userMap.get(message.author.username) ? randomRolledUser !== "Virginia" ? "he's" : "she's" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (37 - 1) + 1)]}`);
-    }
-    else {
-      if (message.content.includes("!spin")) {
-        await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
-      }
-      if(message.content.includes("!slam")) {
-        await message.channel.send(slams[Math.floor(Math.random() * (37 - 1) + 1)]);
-      }
-    }
-    if(message.content.includes("!silence")) {
-      let silenced = message.mentions.users.first().username
-      if(message.author.username === 'Ayanowyn') {
-        timedOut.push(silenced);
-        await message.channel.send(silenced + " has been silenced.")
-      }
-    }
-    if(message.content.includes("!release")) {
-      if(message.author.username === 'Ayanowyn') {
-        timedOut = [];
-        await message.channel.send("Everyone has been released.")
-      }
-    }
+  let randomRolledUser = usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)];  
+  if (!interaction.isChatInputCommand()) return;
+
+  const { commandName } = interaction;
+
+  if (commandName === 'wheel') {
+    await interaction.reply('Hello!');
+  }
+  else if(commandName === 'spin') {
+    await interaction.reply(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
+  }
+  else if(commandName === 'slam') {
+    await interaction.reply(slams[Math.floor(Math.random() * (37 - 1) + 1)]);
+  }
+  else if(commandName === 'spinslam') {
+    await interaction.reply(userMap.get(interaction.user.username) + ` thinks ${randomRolledUser === userMap.get(interaction.user.username) ? 
+      randomRolledUser !== "Virginia" ? "he's" : "she's" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (37 - 1) + 1)]}`);
+  }
+
+  
+    
+    
+    // if(timedOut.includes(message.author.username)) {
+    //   await message.delete();
+    // }
+    // if(message.content.includes("!slam") && message.content.includes("!spin")) {
+    //   message.channel.send(userMap.get(message.author.username) + ` thinks ${randomRolledUser === userMap.get(message.author.username) ? randomRolledUser !== "Virginia" ? "he's" : "she's" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (37 - 1) + 1)]}`);
+    // }
+    // else {
+    //   if (message.content.includes("!spin")) {
+    //     await message.channel.send(usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)]);
+    //   }
+    //   if(message.content.includes("!slam")) {
+    //     await message.channel.send(slams[Math.floor(Math.random() * (37 - 1) + 1)]);
+    //   }
+    // }
+    // if(message.content.includes("!silence")) {
+    //   let silenced = message.mentions.users.first().username
+    //   if(message.author.username === 'Ayanowyn') {
+    //     timedOut.push(silenced);
+    //     await message.channel.send(silenced + " has been silenced.")
+    //   }
+    // }
+    // if(message.content.includes("!release")) {
+    //   if(message.author.username === 'Ayanowyn') {
+    //     timedOut = [];
+    //     await message.channel.send("Everyone has been released.")
+    //   }
+    // }
 });
-bot.login(auth.token);
+bot.login(token);
