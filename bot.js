@@ -30,7 +30,7 @@ bot.on('interactionCreate', async interaction => {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
 
-  let randomRolledUser = usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)];  
+  let randomRolledUser = usualSuspects[Math.floor(Math.random() * (10 - 1) + 1)];
   if (!interaction.isChatInputCommand()) return;
 
   const { commandName } = interaction;
@@ -45,7 +45,8 @@ bot.on('interactionCreate', async interaction => {
     await interaction.reply(slams[Math.floor(Math.random() * (37 - 1) + 1)]);
   }
   else if(commandName === 'spinslam') {
-    await interaction.reply(userMap.get(interaction.user.username) + ` thinks ${randomRolledUser === userMap.get(interaction.user.username) ? 
+    await interaction.reply(userMap.get(interaction.member.user.username) + ` thinks ${randomRolledUser === 
+      userMap.get(interaction.member.user.username) ? 
       randomRolledUser !== "Virginia" ? "he's" : "she's" : randomRolledUser + " is" } a ${slams[Math.floor(Math.random() * (37 - 1) + 1)]}`);
   }
 });

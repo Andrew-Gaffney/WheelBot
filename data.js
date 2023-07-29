@@ -51,14 +51,14 @@ const slams = {
 
 const userMap = new Map();
 
-userMap.set("Pyrrhus", "Matt");
-userMap.set("Ayanowyn", "Andrew");
-userMap.set("MyOnlyAlias", "MD");
+userMap.set("nerevar_again", "Matt");
+userMap.set("ayanowyn", "Andrew");
+userMap.set("myonlyalias", "MD");
 userMap.set("maxbarnyard", "Max");
-userMap.set("CombatPenguins", "Mark");
-userMap.set("Immortal Jellyfish", "Drew");
-userMap.set("snowstorm", "Erik");
-userMap.set("Girl", "Virginia");
+userMap.set("combatpenguins", "Mark");
+userMap.set("specialpotato523", "Drew");
+userMap.set("snowstorm42", "Erik");
+userMap.set("the.girl", "Virginia");
 userMap.set("ekais", "Ethan");
 
 module.exports = { slams, usualSuspects, userMap }; 
